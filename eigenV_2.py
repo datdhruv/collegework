@@ -1,15 +1,15 @@
 import numpy as np
 
-A = [[1,2,-1],[1,0,1],[4,-4,5]]
+#A = [[1,2,-1],[1,0,1],[4,-4,5]]
 #A = [[3,2,4],[2,0,2],[4,2,3]]
 #some test cases
 
-"""A = [[0,0,0],[0,0,0],[0,0,0]]
+A = [[0,0,0],[0,0,0],[0,0,0]]
 
 for i in range(3):
     for j in range (3):
             print("Enter the value of A[",i+1," ",j+1,"] Element")
-            A[i][j] = float(input())"""
+            A[i][j] = float(input())
 
 B = list(map(list,A))
 
