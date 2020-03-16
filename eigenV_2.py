@@ -9,7 +9,7 @@ A = [[0,0,0],[0,0,0],[0,0,0]]
 for i in range(3):
     for j in range (3):
             print("Enter the value of A[",i+1," ",j+1,"] Element")
-            A[i][j] = float(input())
+            A[i][j] = int(input())
 
 B = list(map(list,A))
 
