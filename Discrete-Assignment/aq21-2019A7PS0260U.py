@@ -6,6 +6,14 @@
   - doing this using a linked list
 - then we will filter based on length
 - and finally from the above step we filter based on whether it has repeated edges and vertices or not (thoda unclear hai here)
+
+some links to help me out
+https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+https://www.geeksforgeeks.org/detect-cycle-undirected-graph/?ref=leftbar-rightbar
+https://www.geeksforgeeks.org/check-if-a-cycle-of-length-3-exists-or-not-in-a-graph-that-satisfy-a-given-condition/
+
 '''
 graph = [[0, 1, 0, 1, 0], 
          [1 ,0 ,1 ,0, 1], 
@@ -28,6 +36,5 @@ def DFS(graph : list, node : int):
         Node_List[iteration] = Node()
         for i in iteration:
             if i == 1:
-                                Node_Lis
-
+                
 
