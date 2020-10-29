@@ -21,20 +21,13 @@ graph = [[0, 1, 0, 1, 0],
          [1, 0, 1, 0, 1], 
          [0, 1, 0, 1, 0]] 
 
-class Node:
-    nxt = None
-    prev = None
-    curr = None
+def connector(graph : list ):
+    node = [[] for i in range(len(graph))]
+    for i in range(len(graph)):
+        for j in range(len(graph[0])):
+            if graph[i][j] == 1:
+                node[i].append(j)
+    return node
+    
 
-node1 = Node()
-
-def DFS(graph : list, node : int):
-
-    Node_List = [0 for i in range(len(graph))]
-
-    for interation in range(len(graph)):
-        Node_List[iteration] = Node()
-        for i in iteration:
-            if i == 1:
-                
-
+print(DFS(graph))
