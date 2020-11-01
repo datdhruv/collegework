@@ -32,30 +32,30 @@ def isCycle( graph, n):
             return False
 
 
-<<<<<<< Updated upstream
-=======
-V = len(graph[0])
-n = int(input("Enter the length of cycles to check "))
->>>>>>> Stashed changes
+#V = len(graph[0])
+#n = int(input("Enter the length of cycles to check "))
 
 with open('aq21ip-2019A7PS0260U.txt','r') as f:
     a = '0'
     b = '0'
     graph = []
-    while b != 'Terminate' or a!='':
+    while b != 'Terminate\n':
+        graph.clear()
         while a != '\n': 
             a = f.readline()
             graph.append(a.strip().split(sep=','))
         graph.pop()
-        n = f.readline()
-    
+        n = f.readline().strip()
+
         for i in range(len(graph)):
             for j in range(len(graph[i])):
                 graph[i][j] = int(graph[i][j])
 
         V = len(graph[0])
 
-        print("Is there a cycle of length ",n," in the provided graph? ",isCycle(graph, int(n))) 
+        with open("aq21op-2019A7PS0260U.txt","a") as op:
+
+            op.write("Is there a cycle of length "+ str(n) +" in the provided graph? "+str(isCycle(graph, int(n)))+"\n")
        
         a = '0'
         b = f.readline()

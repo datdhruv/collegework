@@ -13,3 +13,12 @@
 0,1,0,1,0 
 
 4
+Terminate
+
+The Input needs to be in the following format:
+
+matrix
+[space]
+n
+
+if the input is the last input, make sure the "Terminate" is exactly after n in that case
