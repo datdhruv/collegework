@@ -32,6 +32,11 @@ def isCycle( graph, n):
             return False
 
 
+<<<<<<< Updated upstream
+=======
+V = len(graph[0])
+n = int(input("Enter the length of cycles to check "))
+>>>>>>> Stashed changes
 
 with open('aq21ip-2019A7PS0260U.txt','r') as f:
     a = '0'
