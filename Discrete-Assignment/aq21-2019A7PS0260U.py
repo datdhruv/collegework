@@ -1,68 +1,66 @@
-# Q21. Given a graph and a positive integer n, write a program to determine whether the graph has a cycle of length n.
+def DFS(graph, visited, n, v, start, count): 
 
-''' Here is the plan bruv
-- we need to implement a dfs generator, which will create all possible paths
-  - this will be stored in a dict/list
-  - doing this using a linked list
-- then we will filter based on length
-- and finally from the above step we filter based on whether it has repeated edges and vertices or not (thoda unclear hai here)
+	visited[v] = True
 
-some links to help me out
-https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
-https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
-https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
-https://www.geeksforgeeks.org/detect-cycle-undirected-graph/?ref=leftbar-rightbar
-https://www.geeksforgeeks.org/check-if-a-cycle-of-length-3-exists-or-not-in-a-graph-that-satisfy-a-given-condition/
+	if n == 0: 
+		visited[v] = False
+		if graph[v][start] == 1: 
+			count = count + 1
+			return count 
+		else: 
+			return count 
 
-'''
-graph = [[0, 1, 0, 1, 0], 
-         [1 ,0 ,1 ,0, 1], 
-         [0, 1, 0, 1, 0], 
-         [1, 0, 1, 0, 1], 
-         [0, 1, 0, 1, 0]] 
+	for i in range(V): 
+		if visited[i] == False and graph[v][i] == 1: 
+			count = DFS(graph, visited, n-1, i, start, count) 
+	visited[v] = False
+	return count 
 
-already_visited = [0]
+def isCycle( graph, n): 
 
-def connector(graph : list ):
-    """ Return a list with connections"""
-    node = [[] for i in range(len(graph))]
-    for i in range(len(graph)):
-        for j in range(len(graph[0])):
-            if graph[i][j] == 1:
-                node[i].append(j)
-       
-    return node
+    visited = [False] * V 
 
-connect = connector(graph)
+    count = 0
+    for i in range(V-(n-1)): 
+        count = DFS(graph, visited, n-1, i, i, count) 
 
-def DFS_link(a : list):
-    global already_visited
-    
-    for i in a:
-        
-        if i not in already_visited:
-            already_visited.append(i)
-            print(i) 
-            DFS_link(connect[i])
+        visited[i] = True
+	
+        if count > 0:
+            return True
         else:
-            continue
-
-nonsense = DFS_link(connect[0])
-            
+            return False
 
 
-def undirected_DFS(graph : list): 
-    global connect
-    
-    '''DFS = [[] for i in range(len(node))]
-    
-    for i in range(len(node)):
-        DFS[i].append(i)
+#V = len(graph[0])
+#n = int(input("Enter the length of cycles to check "))
 
-            
+with open('aq21ip-2019A7PS0260U.txt','r') as f:
+    a = '0'
+    b = '0'
+    graph = []
+    while b != 'Terminate\n':
+        graph.clear()
+        while a != '\n': 
+            a = f.readline()
+            graph.append(a.strip().split(sep=','))
+        graph.pop()
+        n = f.readline().strip()
 
-print(undirected_DFS(graph))
-'''
+        for i in range(len(graph)):
+            for j in range(len(graph[i])):
+                graph[i][j] = int(graph[i][j])
+
+        V = len(graph[0])
+
+        with open("aq21op-2019A7PS0260U.txt","a") as op:
+
+            op.write("Is there a cycle of length "+ str(n) +" in the provided graph? "+str(isCycle(graph, int(n)))+"\n")
+       
+        a = '0'
+        b = f.readline()
+
+
 
 
 
