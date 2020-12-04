@@ -1,0 +1,1 @@
+Write a program that generates all r -combinations of the elements {1, · · · , n}.
