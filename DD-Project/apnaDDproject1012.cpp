@@ -66,8 +66,8 @@ void setup()
 
 void loop() 
 {
-  pass_unlock();
   rfid_unlock();
+  pass_unlock();
  }
 
  void rfid_unlock(){
