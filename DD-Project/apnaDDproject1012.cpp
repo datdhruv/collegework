@@ -38,6 +38,9 @@ byte colPins[COLS] = {5, 4, 3, 2};
 // Create keypad object
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
  
+
+
+
  
 void setup() 
 {
@@ -66,15 +69,64 @@ void setup()
 
 void loop() 
 {
-  rfid_unlock();
-  pass_unlock();
- }
+    char customKey;
 
- void rfid_unlock(){
-    lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("   Door currently Locked");
-      // Look for new cards
+    lcd.setCursor(0, 1);
+    lcd.print(" Enter Password ");
+
+    customKey = customKeypad.getKey();
+
+        if(customKey == '*')
+        {
+
+         // LCD Conditionals
+         lcd.clear();
+         lcd.setCursor(0, 0);
+         lcd.print("   Door unlocked!");
+
+
+          digitalWrite(RELAY_PIN, HIGH);
+          delay(2000);
+          digitalWrite(RELAY_PIN, LOW);
+          delay(2000);
+        }
+
+        else if (customKey == "#"){
+            goto rfid;
+        }
+    
+        else
+        {
+
+          lcd.clear();
+          lcd.setCursor(0, 0);
+          lcd.print("Wrong Password");
+
+          Serial.println("Invalid input");
+          Serial.println(count);
+          count++;
+
+         // lcd.setCursor(1, 0);
+         //lcd.print(3-count + "attempts left");
+
+              if(count >= 3)
+              {
+                digitalWrite(BUZZER, HIGH);
+                delay(1000);
+                digitalWrite(BUZZER, LOW);
+                delay(1000);
+              }      
+         }
+// RFID tag starts from here
+    rfid:
+    lcd.setCursor(0, 0);
+    lcd.print("   Door currently Locked");
+    lcd.setCursor(0, 1);
+    lcd.print(" Tap RFID Card ")
+    
+        // Look for new cards
       if ( ! mfrc522.PICC_IsNewCardPresent()) 
       {
         return;
@@ -125,61 +177,6 @@ void loop()
                         //digitalWrite(LED_R, LOW);
                       noTone(BUZZER);
                    }
- 
- } 
-
- void pass_unlock(){
-   char customKey = customKeypad.getKey();
-
-         //lcd will prolly go here
-          // LCD initial display
-    lcd.setCursor(0, 0);
-    lcd.print("   Door currently Locked");
- 
-
-
-    lcd.setCursor(0, 0);
-    lcd.print("   Door currently Locked");
-    lcd.setCursor(0, 1);
-    lcd.print(" Enter Password ");
-
-
-        if(customKey == '*')
-        {
-
-         // LCD Conditionals
-          lcd.clear();
-          lcd.setCursor(0, 0);
-         lcd.print("   Door unlocked!");
-
-
-          digitalWrite(RELAY_PIN, HIGH);
-          delay(2000);
-          digitalWrite(RELAY_PIN, LOW);
-          delay(2000);
-        }
-    
-        else
-        {
-
-          lcd.clear();
-           lcd.setCursor(0, 0);
-          lcd.print("Wrong Password");
-
-          Serial.println("Invalid input");
-          Serial.println(count);
-          count++;
-
-         // lcd.setCursor(1, 0);
-         //lcd.print(3-count + "attempts left");
-
-              if(count >= 3)
-              {
-                digitalWrite(BUZZER, HIGH);
-                delay(1000);
-                digitalWrite(BUZZER, LOW);
-                delay(1000);
-              }      
-         }
+   
    
  }
