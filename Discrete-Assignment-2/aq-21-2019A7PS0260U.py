@@ -20,7 +20,6 @@ def combinationUtil(arr, data, start, end, index, r):
         combinationUtil(arr, data, i + 1, end, index + 1, r)
         i += 1
   
-# Driver Code 
 N = int(input("Enter N: "))
 arr = [i for i in range(N)]
 r = int(input("Enter R "))
