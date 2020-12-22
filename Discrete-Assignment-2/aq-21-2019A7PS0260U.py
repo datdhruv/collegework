@@ -2,8 +2,7 @@ def printCombination(arr, n, r):
        
     data = [0]*r
   
-    combinationUtil(arr, data, 0,  
-                    n - 1, 0, r)
+    combinationUtil(arr, data, 0, n - 1, 0, r)
    
 def combinationUtil(arr, data, start, end, index, r): 
                           
